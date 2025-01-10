@@ -24,7 +24,6 @@ Suba os containers do projeto
 docker-compose up -d
 ```
 
-
 Crie o Arquivo .env
 ```sh
 cp .env.example .env
@@ -59,16 +58,15 @@ Acesse o projeto
 
 ---
 ---
+### Se necessário, ajuste as permissões com:
 
-### Remove todos os objetos não utilizados no Dockes, incluindo imagens, conteineres parados, redes não utilizadas e cache de construção para liberar espaço em disco 
+    sudo chmod -R 755 .docker/mysql/dbdata/
 
-    docker system prune --all --force --volumes
-
-### Encerrar containers em execução
+### Remover todos os contêineres, redes e volumes definidos no arquivo docker-compose.yml
 
     docker-compose down
 
-### Remover todos os contêineres, imagens e redes em um comando
+### Remover contêineres, imagens e limpar redes não utilizadas.
 
     [ "$(docker ps -q)" ] && docker stop $(docker ps -q); [ "$(docker ps -aq)" ] && docker rm $(docker ps -aq); [ "$(docker images -q)" ] && docker rmi $(docker images -q); docker network prune -f
 
